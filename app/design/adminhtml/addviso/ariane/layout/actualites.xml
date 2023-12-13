@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <actualites_adminhtml_actualites_index>
+                        
+        <reference name="content">
+            <block type="actualites/adminhtml_actualites" name="actualites" />
+        </reference>
+    </actualites_adminhtml_actualites_index>
+    
+</layout>

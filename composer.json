@@ -1,0 +1,29 @@
+{
+    "name": "oliv/artsafrique",
+    "description": "Art Afrique Dogon",
+    "require": {
+        "aydin-hassan/magento-core-composer-installer": "*",
+        "openmage/magento-lts": "v19.4.23"
+    },
+    "extra": {
+        "magento-core-package-type": "magento-source",
+        "magento-root-dir": ".",
+        "magento-core-deploy" : {
+            "excludes": [
+                "app/etc/local.xml",
+                ".htaccess",
+                "lib/Varien/Data/Form/Element/Image.php",
+                "downloader",
+                "media",
+                "var"
+            ]
+        }
+    },
+    "config": {
+	    "bin-dir": "bin",
+        "allow-plugins": {
+            "aydin-hassan/magento-core-composer-installer": true,
+            "magento-hackathon/magento-composer-installer": true
+        }
+	}
+}

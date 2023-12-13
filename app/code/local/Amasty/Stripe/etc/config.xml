@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Stripe
+ */
+-->
+<config>
+    <modules>
+        <Amasty_Stripe>
+            <version>2.0.4</version>
+        </Amasty_Stripe>
+    </modules>
+
+    <global>
+        <helpers>
+            <amstripe>
+                <class>Amasty_Stripe_Helper</class>
+            </amstripe>
+        </helpers>
+        <models>
+            <amstripe>
+                <class>Amasty_Stripe_Model</class>
+            </amstripe>
+        </models>
+        <blocks>
+            <amstripe>
+                <class>Amasty_Stripe_Block</class>
+            </amstripe>
+        </blocks>
+        <events>
+            <sales_order_payment_place_end>
+                <observers>
+                    <amasty_stripe_model_place_after_observer>
+                        <type>singleton</type>
+                        <class>Amasty_Stripe_Model_Observer_PlaceOrderAfter</class>
+                        <method>execute</method>
+                    </amasty_stripe_model_place_after_observer>
+                </observers>
+            </sales_order_payment_place_end>
+        </events>
+    </global>
+    <frontend>
+        <translate>
+            <modules>
+                <Amasty_Stripe>
+                    <files>
+                        <default>Amasty_Stripe.csv</default>
+                    </files>
+                </Amasty_Stripe>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <amstripe>
+                    <file>amasty/stripe.xml</file>
+                </amstripe>
+            </updates>
+        </layout>
+        <routers>
+            <amstripefront>
+                <use>standard</use>
+                <args>
+                    <module>Amasty_Stripe</module>
+                    <frontName>amstripefront</frontName>
+                </args>
+            </amstripefront>
+        </routers>
+    </frontend>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Amasty_Stripe>
+                    <files>
+                        <default>Amasty_Stripe.csv</default>
+                    </files>
+                </Amasty_Stripe>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <amstripe>
+                    <file>amasty/stripe.xml</file>
+                </amstripe>
+            </updates>
+        </layout>
+    </adminhtml>
+    <default>
+        <payment>
+            <amasty_stripe>
+                <title>Credit Card Via Stripe</title>
+                <model>amstripe/method_stripe</model>
+                <payment_action>order</payment_action>
+                <merchant_country>US</merchant_country>
+            </amasty_stripe>
+        </payment>
+    </default>
+</config>

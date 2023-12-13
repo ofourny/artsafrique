@@ -1,0 +1,12 @@
+<?php
+$store = Mage::app()->getStore();
+$code  = $store->getCode();
+?>
+<?php $_product = $this->getProduct(); ?>
+<?php $_wishlistSubmitUrl = $this->helper('wishlist')->getAddUrl($_product); ?>
+
+<ul class="add-to-links">
+<?php if ($this->helper('wishlist')->isAllow()) : ?>
+    <li><a href="<?php echo $_wishlistSubmitUrl ?>" onclick="productAddToCartForm.submitLight(this, this.href); return false;" class="link-wishlist"><i class="icon-wishlist"></i><span><?php echo $this->__('Add to Wishlist'); ?></span></a></li>
+<?php endif; ?>
+</ul>

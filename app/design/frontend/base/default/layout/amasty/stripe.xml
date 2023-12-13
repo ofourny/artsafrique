@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Stripe
+ */
+-->
+<layout>
+    <checkout_onepage_index>
+        <reference name="head">
+            <action method="addItem"><type>js</type><name>amasty/stripe/payment.js</name></action>
+            <block type="core/template" name="amasty.stripe.head" template="amasty/stripe/head.phtml"/>
+        </reference>
+    </checkout_onepage_index>
+    <iwd_opc_index_index>
+        <reference name="head">
+            <action method="addItem"><type>js</type><name>amasty/stripe/payment.js</name></action>
+            <block type="core/template" name="amasty.stripe.head" template="amasty/stripe/head.phtml"/>
+        </reference>
+    </iwd_opc_index_index>
+    <onepagecheckout_index_index>
+        <reference name="head">
+            <action method="addItem"><type>js</type><name>amasty/stripe/payment.js</name></action>
+            <block type="core/template" name="amasty.stripe.head" template="amasty/stripe/head.phtml"/>
+        </reference>
+    </onepagecheckout_index_index>
+    <firecheckout_index_index>
+        <reference name="head">
+            <action method="addItem"><type>js</type><name>amasty/stripe/payment.js</name></action>
+            <block type="core/template" name="amasty.stripe.head" template="amasty/stripe/head.phtml"/>
+        </reference>
+    </firecheckout_index_index>
+</layout>

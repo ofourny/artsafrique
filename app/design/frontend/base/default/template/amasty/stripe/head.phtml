@@ -1,0 +1,40 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Stripe
+ */
+?>
+<style>
+    .stripeCard.StripeElement {
+        background-color: white;
+        height: 40px;
+        padding: 10px 12px;
+        border-radius: 4px;
+        border: 1px solid transparent;
+        box-shadow: 0 1px 3px 0 #e6ebf1;
+        -webkit-transition: box-shadow 150ms ease;
+        transition: box-shadow 150ms ease;
+    }
+
+    .stripeCard.StripeElement--focus {
+        box-shadow: 0 1px 3px 0 #cfd7df;
+    }
+
+    .stripeCard.StripeElement--invalid {
+        border-color: #fa755a;
+    }
+
+    .stripeCard.StripeElement--webkit-autofill {
+        background-color: #fefde5 !important;
+    }
+
+    .stripeButton.StripeElement {
+        margin-bottom: 5px;
+    }
+
+    #stripe-card-element.stripeCard {
+        box-sizing: border-box;
+    }
+</style>
+<script src="https://js.stripe.com/v3/"></script>

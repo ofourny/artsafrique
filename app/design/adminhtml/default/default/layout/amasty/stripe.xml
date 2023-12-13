@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Stripe
+ */
+-->
+<layout>
+    <adminhtml_sales_order_create_index>
+        <reference name="head">
+            <action ifconfig="payment/amasty_stripe/active" method="addItem"><type>js</type><name>amasty/stripe/payment.js</name></action>
+        </reference>
+        <reference name="js">
+            <block type="core/template" name="amasty.stripe.head" after="-">
+                <action ifconfig="payment/amasty_stripe/active" method="setTemplate" >
+                    <template>amasty/stripe/head.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_create_index>
+</layout>

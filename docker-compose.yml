@@ -1,0 +1,35 @@
+version: '2'
+services:
+  database:
+    image: mariadb:10.3
+    volumes:
+    - database_data:/var/lib/mysql
+    environment:
+    - MYSQL_ROOT_PASSWORD=adminsql
+    - MYSQL_DATABASE=artsafrique
+    - MYSQL_USER=magento
+    - MYSQL_PASSWORD=magento
+  app:
+    build:
+      context: ./docker/
+    volumes:
+    - .:/var/www/html/
+    - '${SSH_AUTH_SOCK}:/ssh-agent'
+    - './conf/dev/php/php.ini:/usr/local/etc/php/php.ini'
+    - './conf/dev/apache/VirtualHost.conf:/etc/apache2/sites-available/000-default.conf'
+    ports:
+    - "80:80"
+    environment:
+    - SSH_AUTH_SOCK=/ssh-agent
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    links:
+    - database:db
+    ports:
+    - "8080:80"
+    environment:
+    - MYSQL_ROOT_PASSWORD=adminsql
+volumes:
+  database_data:
+  data01:
+    driver: local

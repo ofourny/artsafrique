@@ -1,0 +1,17 @@
+/vendor/
+!media/
+/media/*
+/var/*
+!var/cache/
+/var/cache/*
+!var/cache/.gitkeep
+!var/log/
+/var/log/*
+/var/ait_rewrite/
+/var/ait_install/
+/var/export/
+/var/locks/
+/var/package/
+/var/report/
+/var/session/
+/var/tmp/
