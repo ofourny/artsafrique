@@ -61,7 +61,7 @@ class Smartwave_Megamenu_Helper_Data extends Mage_Core_Helper_Abstract
             '_isWide'                       => Mage::getStoreConfig('megamenu/general/wide_style'),
             '_showHomeLink'                 => Mage::getStoreConfig('megamenu/general/show_home_link'),
             '_showHomeIcon'                 => Mage::getStoreConfig('megamenu/general/show_home_icon'),
-            '_popupWidth'                   => Mage::getStoreConfig('megamenu/popup/width') + 0            
+            '_popupWidth'                   => Mage::getStoreConfig('megamenu/popup/width') . '0'
         );        
         return $this->_menuData;
     }

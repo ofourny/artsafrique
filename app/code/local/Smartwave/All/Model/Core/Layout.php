@@ -102,7 +102,6 @@ class Smartwave_All_Model_Core_Layout extends Mage_Core_Model_Layout
             $block = $this->getBlock($parentName);
         }
         if (!empty($block)) {
-
             $args = (array)$node->children();
             unset($args['@attributes']);
 
@@ -114,13 +113,17 @@ class Smartwave_All_Model_Core_Layout extends Mage_Core_Model_Layout
                         $helperName = implode('/', $helperName);
                         $arg = $arg->asArray();
                         unset($arg['@']);
-                        $args[$key] = call_user_func_array(array(Mage::helper($helperName), $helperMethod), $arg);
+                        $args[$key] = call_user_func_array([Mage::helper($helperName), $helperMethod], $arg);
                     } else {
                         /**
                          * if there is no helper we hope that this is assoc array
                          */
-                        $arr = array();
-                        foreach($arg as $subkey => $value) {
+                        $arr = [];
+                        /**
+                         * @var string $subkey
+                         * @var Mage_Core_Model_Layout_Element $value
+                         */
+                        foreach ($arg as $subkey => $value) {
                             $arr[(string)$subkey] = $value->asArray();
                         }
                         if (!empty($arr)) {
@@ -137,9 +140,12 @@ class Smartwave_All_Model_Core_Layout extends Mage_Core_Model_Layout
                 }
             }
 
+            //Mage::helper('core/security')->validateAgainstBlockMethodBlacklist($block, $method, $args);
+
             $this->_translateLayoutNode($node, $args);
-            call_user_func_array(array($block, $method), $args);
+            call_user_func_array([$block, $method], array_values($args));
         }
+
 
         Varien_Profiler::stop($_profilerKey);
 
