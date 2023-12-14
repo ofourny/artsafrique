@@ -751,7 +751,7 @@ class OwebiaShippingHelper
 						$fee = trim($fee_data[1]);
 						$max_value = trim($fee_data[0]);
 
-						$last_char = $max_value{strlen($max_value)-1};
+						$last_char = $max_value[strlen($max_value)-1];
 						if ($last_char=='[') $including_max_value = false;
 						else if ($last_char==']') $including_max_value = true;
 						else $including_max_value = true;
@@ -921,7 +921,7 @@ class OwebiaShippingHelper
 				$properties_count = count($property_set);
 				foreach ($property_set as $j => $property) {
 					$name = $property['property_name'];
-					if ($name{0}!='"' || $name{strlen($name)-1}!='"') {
+					if ($name[0] !='"' || $name[strlen($name)-1] !='"') {
 						$auto_correction_warnings['missing_enquote_of_property_name'] = 'JSON: missing enquote of property name: %s';
 						$missing_enquote_of_property_name[] = self::toString(trim($name, '"'));
 					}

@@ -1,527 +1,164 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Copyright (c) 2008-13 Owebia
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"),
- * to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
- * and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
- * IN THE SOFTWARE.
- *
- * @website    http://www.owebia.com/
- * @project    Magento Owebia Shipping 2 module
- * @author     Antoine Lemoine
- * @license    http://www.opensource.org/licenses/MIT  The MIT License (MIT)
-**/
+ * Copyright © 2008-2020 Owebia. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 -->
 <config>
-	<modules>
-		<Owebia_Shipping2>
-			<version>2.5.11</version>
-			<depends>
-				<Mage_Shipping />
-			</depends>
-		</Owebia_Shipping2>
-	</modules>
+    <modules>
+        <Owebia_Shipping2>
+            <version>2.6.10</version>
+            <depends>
+                <Mage_Shipping />
+            </depends>
+        </Owebia_Shipping2>
+    </modules>
 
-	<global>
-		<models>
-			<owebia-shipping2>
-				<class>Owebia_Shipping2_Model</class>
-			</owebia-shipping2>
- 		</models>
-		<blocks>
-			<owebia-shipping2>
-				<class>Owebia_Shipping2_Block</class>
-			</owebia-shipping2>
- 		</blocks>
-		<helpers>
-			<owebia-shipping2>
-				<class>Owebia_Shipping2_Helper</class>
-			</owebia-shipping2>
-		</helpers>
-		<resources>
-			<sales>
-				<shipping>
-					<carriers>
-						<owebiashipping1>
-							<class>Owebia_Shipping2_Model_Carrier_OwebiaShipping1</class>
-						</owebiashipping1>
-						<owebiashipping2>
-							<class>Owebia_Shipping2_Model_Carrier_OwebiaShipping2</class>
-						</owebiashipping2>
-						<owebiashipping3>
-							<class>Owebia_Shipping2_Model_Carrier_OwebiaShipping3</class>
-						</owebiashipping3>
-					</carriers>
-				</shipping>
-			</sales>
-		</resources>
-	</global>
+    <global>
+        <models>
+            <owebia_shipping2>
+                <class>Owebia_Shipping2_Model</class>
+            </owebia_shipping2>
+        </models>
+        <blocks>
+            <owebia_shipping2>
+                <class>Owebia_Shipping2_Block</class>
+            </owebia_shipping2>
+        </blocks>
+        <helpers>
+            <owebia_shipping2>
+                <class>Owebia_Shipping2_Helper</class>
+            </owebia_shipping2>
+        </helpers>
+        <events>
+            <resource_get_tablename>
+                <observers>
+                    <owebia_shipping2>
+                        <class>owebia_shipping2/observer</class>
+                        <method>registerAutoloader</method>
+                    </owebia_shipping2>
+                </observers>
+            </resource_get_tablename>
+        </events>
+        <resources>
+            <owebia_shipping2_setup>
+                <setup>
+                    <module>Owebia_Shipping2</module>
+                </setup>
+            </owebia_shipping2_setup>
+            <sales>
+                <shipping>
+                    <carriers>
+                        <owebiashipping1>
+                            <class>Owebia_Shipping2_Model_Carrier_OwebiaShipping1</class>
+                        </owebiashipping1>
+                    </carriers>
+                </shipping>
+            </sales>
+        </resources>
+    </global>
 
-	<admin>
-		<routers>
-			<adminhtml>
-				<args>
-					<modules>
-						<owebia-shipping2 before="Mage_Adminhtml">Owebia_Shipping2_Adminhtml</owebia-shipping2>
-					</modules>
-				</args>
-			</adminhtml>
-		</routers>
-		<!--
-		<routers>
-			<owebia-shipping2>
-				<use>admin</use>
-				<args>
-					<module>Owebia_Shipping2</module>
-					<frontName>owebia-shipping2</frontName>
-				</args>
-			</owebia-shipping2>
-		</routers>
-		-->
-	</admin>
-	<adminhtml>
-		<!--
-		<menu>
-			<owebia translate="title" module="adminhtml">
-				<title>Owebia</title>
-				<sort_order>100</sort_order>
-				<children>
-					<owebiashipping2>
-						<title>Owebia Shipping 2</title>
-						<action>owebia-shipping2/index</action>
-					</owebiashipping2>
-					<ajax>
-						<title>Owebia Shipping 2 ajax</title>
-						<action>owebia-shipping2/ajax</action>
-					</ajax>
-				</children>
-			</owebia>
-		</menu>
-		-->
-		<!-- Magento lower than 1.4.0 -->
-		<acl>
-			<resources>
-				<admin>
-					<children>
-						<system>
-							<children>
-								<config>
-									<children>
-										<owebia>
-											<title>Owebia Section</title>
-											<sort_order>100</sort_order>
-										</owebia>
-									</children>
-								</config>
-							</children>
-						</system>
-					</children>
-				</admin>
-			</resources>
-		</acl>
-		<translate>
-			<modules>
-				<Mage_Shipping>
-					<files>
-						<owebia-shipping2>Owebia_Shipping2.csv</owebia-shipping2>
-					</files>
-				</Mage_Shipping>
-			</modules>
-		</translate>
-	</adminhtml>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <owebia_shipping2 before="Mage_Adminhtml">Owebia_Shipping2_Adminhtml</owebia_shipping2>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <!-- Magento lower than 1.4.0 -->
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <owebia>
+                                            <title>Owebia Section</title>
+                                            <sort_order>100</sort_order>
+                                        </owebia>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <translate>
+            <modules>
+                <Mage_Shipping>
+                    <files>
+                        <owebia_shipping2>Owebia_Shipping2.csv</owebia_shipping2>
+                    </files>
+                </Mage_Shipping>
+            </modules>
+        </translate>
+    </adminhtml>
 
-	<frontend>
-		<translate>
-			<modules>
-				<Mage_Shipping>
-					<files>
-						<owebia-shipping2>Owebia_Shipping2.csv</owebia-shipping2>
-					</files>
-				</Mage_Shipping>
-			</modules>
-		</translate>
-		<routers>
-			<checkout>
-				<args>
-					<modules>
-						<owebia-shipping2 before="Mage_Checkout">Owebia_Shipping2_Checkout</owebia-shipping2>
-					</modules>
-				</args>
-			</checkout>
-		</routers>
-	</frontend>
+    <frontend>
+        <translate>
+            <modules>
+                <Mage_Shipping>
+                    <files>
+                        <owebia_shipping2>Owebia_Shipping2.csv</owebia_shipping2>
+                    </files>
+                </Mage_Shipping>
+            </modules>
+        </translate>
+        <routers>
+            <checkout>
+                <args>
+                    <modules>
+                        <owebia_shipping2 before="Mage_Checkout">Owebia_Shipping2_Checkout</owebia_shipping2>
+                    </modules>
+                </args>
+            </checkout>
+        </routers>
+    </frontend>
 
-	<default>
-		<owebia-shipping2>
-			<general>
-				<weight_unit>kg</weight_unit>
-			</general>
-			<bundle-product>
-				<process_children>0</process_children>
-				<load_item_options_on_parent>1</load_item_options_on_parent>
-				<load_item_data_on_parent>1</load_item_data_on_parent>
-				<load_product_data_on_parent>1</load_product_data_on_parent>
-			</bundle-product>
-			<configurable-product>
-				<load_item_options_on_parent>1</load_item_options_on_parent>
-				<load_item_data_on_parent>1</load_item_data_on_parent>
-				<load_product_data_on_parent>0</load_product_data_on_parent>
-			</configurable-product>
-		</owebia-shipping2>
-		<carriers>
-			<owebiashipping1>
-				<active>0</active>
-				<title>Colissimo / Chronopost / Export 3J</title>
-				<model>Owebia_Shipping2_Model_Carrier_OwebiaShipping1</model>
-				<tracking_view_url></tracking_view_url>
-				<config><![CDATA[
-{
-	"meta_colissimo": {
-		"type": "meta",
-		"about": "Colissimo - Tarifs du 1er mars 2012",
-		"author": "Denis Baron, ajustements des destinations et limites de poids par owebia"
-	},
-	"colissimo": {
-		"about": "Colissimo National (France, Monaco, Andorre)",
-		"label": "Colissimo National",
-		"shipto": "FR,MC,AD",
-		"fees": "{table {cart.weight} in 0.5:5.70, 1.0:7.10, 2.0:8.20, 3.0:9.25, 5.0:11.35, 7.0:13.35, 10.0:16.35, 15.0:18.85, 30.0:26.35}",
-		"tracking_url": "http://www.coliposte.net/particulier/suivi_particulier.jsp?colispart={tracking_number}"
-	},
-	"colissimo_r1": {
-		"about": "Colissimo National + Recommandé R1",
-		"label": "Colissimo National Recommandé R1",
-		"shipto": "{colissimo.destination}",
-		"conditions": "{cart.price+tax+discount}<=50.00",
-		"fees": "{table {cart.weight} in 0.5:8.20, 1.0:9.60, 2.0:10.70, 3.0:11.75, 5.0:13.85, 7.0:15.85, 10.0:18.85, 15.0:21.35, 30.0:28.85}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_r2": {
-		"about": "Colissimo National + Recommandé R2",
-		"label": "Colissimo National Recommandé R2",
-		"shipto": "{colissimo.destination}",
-		"conditions": "({cart.price+tax+discount}>50.00) and ({cart.price+tax+discount}<=200.00)",
-		"fees": "{table {cart.weight} in 0.5:9.10, 1.0:10.50, 2.0:11.60, 3.0:12.65, 5.0:14.75, 7.0:16.75, 10.0:19.75, 15.0:22.25, 30.0:29.75}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_r3": {
-		"about": "Colissimo National + Recommandé R3",
-		"label": "Colissimo National Recommandé R3",
-		"shipto": "{colissimo.destination}",
-		"conditions": "({cart.price+tax+discount}>200.00) and ({cart.price+tax+discount}<=400.00)",
-		"fees": "{table {cart.weight} in 0.5:10.30, 1.0:11.70, 2.0:12.80, 3.0:13.85, 5.0:15.95, 7.0:17.95, 10.0:20.95, 15.0:23.45, 30.0:30.95}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_r4": {
-		"about": "Colissimo National + Recommandé R4",
-		"label": "Colissimo National Recommandé R4",
-		"shipto": "{colissimo.destination}",
-		"conditions": "({cart.price+tax+discount}>400.00) and ({cart.price+tax+discount}<=600.00)",
-		"fees": "{table {cart.weight} in 0.5:11.50, 1.0:12.90, 2.0:14.00, 3.0:15.05, 5.0:17.15, 7.0:19.15, 10.0:22.15, 15.0:24.65, 30.0:32.15}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_r5": {
-		"about": "Colissimo National + Recommandé R5",
-		"label": "Colissimo National Recommandé R5",
-		"shipto": "{colissimo.destination}",
-		"conditions": "{cart.price+tax+discount}>600.00",
-		"fees": "{table {cart.weight} in 0.5:12.70, 1.0:14.10, 2.0:15.20, 3.0:16.25, 5.0:18.35, 7.0:20.35, 10.0:23.35, 15.0:25.85, 30.0:33.35}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_ar": {
-		"about": "Colissimo National + Accusé réception",
-		"enabled": false,
-		"label": "Colissimo National",
-		"shipto": "{colissimo.destination}",
-		"fees": "1.30+{colissimo.fees}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_ar_r1": {
-		"about": "Colissimo National + Recommandé R1 + Accusé réception",
-		"enabled": false,
-		"label": "Colissimo National Recommandé R1",
-		"shipto": "{colissimo.destination}",
-		"conditions": "{colissimo_r1.conditions}",
-		"fees": "1.30+{colissimo_r1.fees}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_ar_r2": {
-		"about": "Colissimo National + Recommandé R2 + Accusé réception",
-		"enabled": false,
-		"label": "Colissimo National Recommandé R2",
-		"shipto": "{colissimo.destination}",
-		"conditions": "{colissimo_r2.conditions}",
-		"fees": "1.30+{colissimo_r2.fees}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_ar_r3": {
-		"about": "Colissimo National + Recommandé R3 + Accusé réception",
-		"enabled": false,
-		"label": "Colissimo National Recommandé R3",
-		"shipto": "{colissimo.destination}",
-		"conditions": "{colissimo_r3.conditions}",
-		"fees": "1.30+{colissimo_r3.fees}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_ar_r4": {
-		"about": "Colissimo National + Recommandé R4 + Accusé réception",
-		"enabled": false,
-		"label": "Colissimo National Recommandé R4",
-		"shipto": "{colissimo.destination}",
-		"conditions": "{colissimo_r4.conditions}",
-		"fees": "1.30+{colissimo_r4.fees}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_ar_r5": {
-		"about": "Colissimo National + Recommandé R5 + Accusé réception",
-		"enabled": false,
-		"label": "Colissimo National Recommandé R5",
-		"shipto": "{colissimo.destination}",
-		"conditions": "{colissimo_r5.conditions}",
-		"fees": "1.30+{colissimo_r5.fees}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_om1": {
-		"about": "Colissimo International OM1 (Départements et collectivités d'outre-mer)\n  Guadeloupe, Martinique, Guyane, Réunion, Mayotte,\n  Saint-Pierre et Miquelon, Saint-Martin, Saint-Barthélémy",
-		"label": "Colissimo OM1 Assuré",
-		"shipto": "GP,MQ,GF,RE,YT,PM,MF,BL",
-		"fees": "{table {cart.weight} in 0.5:8.45, 1.0:12.70, 2.0:17.35, 3.0:22.00, 4.0:26.65, 5.0:31.30, 6.0:35.95, 7.0:40.60, 8.0:45.25, 9.0:49.90, 10.0:54.55, 15.0:77.75, 20.0:100.95, 25.0:124.15, 30.0:147.35}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_om1_r1": {
-		"about": "Colissimo International OM1 + Recommandé R1",
-		"label": "Colissimo OM1 Recommandé R1",
-		"shipto": "{colissimo_om1.destination}",
-		"conditions": "{colissimo_r1.conditions}",
-		"fees": "{table {cart.weight} in 0.5:10.95, 1.0:15.20, 2.0:19.85, 3.0:24.50, 4.0:29.15, 5.0:33.80, 6.0:38.45, 7.0:43.10, 8.0:47.75, 9.0:52.40, 10.0:57.05, 15.0:80.25, 20.0:103.45, 25.0:126.65, 30.0:149.85}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_om1_r2": {
-		"about": "Colissimo International OM1 + Recommandé R2",
-		"label": "Colissimo OM1 Recommandé R2",
-		"shipto": "{colissimo_om1.destination}",
-		"conditions": "{colissimo_r2.conditions}",
-		"fees": "{table {cart.weight} in 0.5:11.85, 1.0:16.10, 2.0:20.75, 3.0:25.40, 4.0:30.05, 5.0:34.70, 6.0:39.35, 7.0:44.00, 8.0:48.65, 9.0:53.30, 10.0:57.95, 15.0:81.15, 20.0:104.35, 25.0:127.55, 30.0:150.75}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_om1_r3": {
-		"about": "Colissimo International OM1 + Recommandé R3",
-		"label": "Colissimo OM1 Recommandé R3",
-		"shipto": "{colissimo_om1.destination}",
-		"conditions": "{colissimo_r3.conditions}",
-		"fees": "{table {cart.weight} in 0.5:13.05, 1.0:17.30, 2.0:21.95, 3.0:26.60, 4.0:31.25, 5.0:35.90, 6.0:40.55, 7.0:45.20, 8.0:49.85, 9.0:54.50, 10.0:59.15, 15.0:82.35, 20.0:105.55, 25.0:128.75, 30.0:151.95}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_om1_r4": {
-		"about": "Colissimo International OM1 + Recommandé R4",
-		"label": "Colissimo OM1 Recommandé R4",
-		"shipto": "{colissimo_om1.destination}",
-		"conditions": "{colissimo_r4.conditions}",
-		"fees": "{table {cart.weight} in 0.5:14.25, 1.0:18.50, 2.0:23.15, 3.0:27.80, 4.0:32.45, 5.0:37.10, 6.0:41.75, 7.0:46.40, 8.0:51.05, 9.0:55.70, 10.0:60.35, 15.0:83.55, 20.0:106.75, 25.0:129.95, 30.0:153.15}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_om1_r5": {
-		"about": "Colissimo International OM1 + Recommandé R5",
-		"label": "Colissimo OM1 Recommandé R5",
-		"shipto": "{colissimo_om1.destination}",
-		"conditions": "{colissimo_r5.conditions}",
-		"fees": "{table {cart.weight} in 0.5:15.45, 1.0:19.70, 2.0:24.35, 3.0:29.00, 4.0:33.65, 5.0:38.30, 6.0:42.95, 7.0:47.60, 8.0:52.25, 9.0:56.90, 10.0:61.55, 15.0:84.75, 20.0:107.95, 25.0:131.15, 30.0:154.35}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_om2": {
-		"about": "Colissimo International OM2 (Collectivités d'outre-mer)\n  Nouvelle Calédonie, Polynésie Française, Wallis et Futuna,\n  les Terres Australes et Antarctiques Françaises (TF mais pas TF+AQ)\n  Attention : le site colissimo.fr ne propose pas TF dans les destinations mais indique que le tarif est celui-là",
-		"label": "Colissimo OM2 Assuré",
-		"shipto": "NC,PF,WF,TF",
-		"fees": "{table {cart.weight} in 0.5:10.10, 1.0:15.20, 2.0:26.80, 3.0:38.40, 4.0:50.00, 5.0:61.60, 6.0:73.20, 7.0:84.80, 8.0:96.40, 9.0:108.00, 10.0:119.60, 15.0:177.60, 20.0:235.60, 25.0:293.60, 30.0:351.60}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_om2_r1": {
-		"about": "Colissimo International OM2 + Recommandé R1",
-		"label": "Colissimo OM2 Recommandé R1",
-		"shipto": "{colissimo_om2.destination}",
-		"conditions": "{colissimo_r1.conditions}",
-		"fees": "{table {cart.weight} in 0.5:12.60, 1.0:17.70, 2.0:29.30, 3.0:40.90, 4.0:52.50, 5.0:64.10, 6.0:75.70, 7.0:87.30, 8.0:98.90, 9.0:110.50, 10.0:122.10, 15.0:180.10, 20.0:238.10, 25.0:296.10, 30.0:354.10}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_om2_r2": {
-		"about": "Colissimo International OM2 + Recommandé R2",
-		"label": "Colissimo OM2 Recommandé R2",
-		"shipto": "{colissimo_om2.destination}",
-		"conditions": "{colissimo_r2.conditions}",
-		"fees": "{table {cart.weight} in 0.5:13.50, 1.0:18.60, 2.0:30.20, 3.0:41.80, 4.0:53.40, 5.0:65.00, 6.0:76.60, 7.0:88.20, 8.0:99.80, 9.0:111.40, 10.0:123.00, 15.0:181.00, 20.0:239.00, 25.0:297.00, 30.0:355.00}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_om2_r3": {
-		"about": "Colissimo International OM2 + Recommandé R3",
-		"label": "Colissimo OM2 Recommandé R3",
-		"shipto": "{colissimo_om2.destination}",
-		"conditions": "{colissimo_r3.conditions}",
-		"fees": "{table {cart.weight} in 0.5:14.70, 1.0:19.80, 2.0:31.40, 3.0:43.00, 4.0:54.60, 5.0:66.20, 6.0:77.80, 7.0:89.40, 8.0:101.00, 9.0:112.60, 10.0:124.20, 15.0:182.20, 20.0:240.20, 25.0:298.20, 30.0:356.20}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_om2_r4": {
-		"about": "Colissimo International OM2 + Recommandé R4",
-		"label": "Colissimo OM2 Recommandé R4",
-		"shipto": "{colissimo_om2.destination}",
-		"conditions": "{colissimo_r4.conditions}",
-		"fees": "{table {cart.weight} in 0.5:15.90, 1.0:21.00, 2.0:32.60, 3.0:44.20, 4.0:55.80, 5.0:67.40, 6.0:79.00, 7.0:90.60, 8.0:102.20, 9.0:113.80, 10.0:125.40, 15.0:183.40, 20.0:241.40, 25.0:299.40, 30.0:357.40}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_om2_r5": {
-		"about": "Colissimo International OM2 + Recommandé R5",
-		"label": "Colissimo OM2 Recommandé R5",
-		"shipto": "{colissimo_om2.destination}",
-		"conditions": "{colissimo_r5.conditions}",
-		"fees": "{table {cart.weight} in 0.5:17.10, 1.0:22.20, 2.0:33.80, 3.0:45.40, 4.0:57.00, 5.0:68.60, 6.0:80.20, 7.0:91.80, 8.0:103.40, 9.0:115.00, 10.0:126.60, 15.0:184.60, 20.0:242.60, 25.0:300.60, 30.0:358.60}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_a30": {
-		"about": "Colissimo International Zone A max 30 kg\n  Union Européenne (sauf pays limités 20 kg), Suisse, Gibraltar, Groenland",
-		"label": "Colissimo International Zone A",
-		"shipto": "AT,BE,CZ,DE,DK,ES,FI,GB,GR,HU,IE,IT,LU,NL,PL,PT,SE,SI,SK, CH, GI, GL",
-		"fees": "{table {cart.weight} in 1.0:16.15, 2.0:17.85, 3.0:21.55, 4.0:25.25, 5.0:28.95, 6.0:32.65, 7.0:36.35, 8.0:40.05, 9.0:43.75, 10.0:47.45, 15.0:54.65, 20.0:61.85, 25.0:69.05, 30.0:76.25}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_a20": {
-		"about": "Colissimo International Zone A max 20 kg\n  Bulgarie, Chypre, Estonie, Îles Féroé, Liechtenstein, Lituanie, Lettonie, Malte, Roumanie, Saint-Marin, État de la Cité du Vatican",
-		"label": "{colissimo_a30.label}",
-		"shipto": "BG,CY,EE,FO,LI,LT,LV,MT,RO,SM,VA",
-		"conditions": "{cart.weight}<=20.0",
-		"fees": "{colissimo_a30.fees}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_b20": {
-		"about": "Colissimo International Zone B max 20 kg\n  Pays de l’Europe de l’Est (hors Union Européenne), Norvège, Maghreb",
-		"label": "Colissimo International Zone B",
-		"shipto": "AZ,BY,DZ,HR,IS,MA,ME,RS,TR,AL,AM,BA,GE,MD,MK,RU,UA,NO,TN",
-		"fees": "{table {cart.weight} in 1.0:19.80, 2.0:21.70, 3.0:26.25, 4.0:30.80, 5.0:35.35, 6.0:39.90, 7.0:44.45, 8.0:49.00, 9.0:53.55, 10.0:58.10, 15.0:68.50, 20.0:78.90}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_c30": {
-		"about": "Colissimo International Zone C max 30 kg\n  Burkina Faso, Côte d’Ivoire, Ghana, Mali",
-		"label": "Colissimo International Zone C",
-		"shipto": "BF,CI,GH,ML",
-		"fees": "{table {cart.weight} in 1.0:23.20, 2.0:31.10, 3.0:40.90, 4.0:50.70, 5.0:60.50, 6.0:70.30, 7.0:80.10, 8.0:89.90, 9.0:99.70, 10.0:109.50, 15.0:133.60, 20.0:157.70, 25.0:172.10, 30.0:195.10}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_c20": {
-		"about": "Colissimo International Zone C max 20 kg\n  Pays d’Afrique (sauf pays limités 30 kg et 10 kg) hors Maghreb, Canada, Etats-Unis, Proche et Moyen Orient",
-		"label": "{colissimo_c30.label}",
-		"shipto": "AE,AO,BH,BI,BJ,BW,CA,CD,CF,CG,CM,CV,DJ,EG,ER,ET,GA,GM,GN,GW,IL,IR,JO,KE,KM,KW,LB,LR,LS,LY,MG,MR,MU,MW,MZ,NA,NE,NG,OM,PR,QA,RW,SA,SC,SD,SH,SL,SN,ST,SY,SZ,TD,TG,TZ,UG,US,YE,ZA,ZM,ZW",
-		"conditions": "{cart.weight}<=20.0",
-		"fees": "{colissimo_c30.fees}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_c10": {
-		"about": "Colissimo International Zone C max 10 kg\n  Guinée équatoriale",
-		"label": "{colissimo_c20.label}",
-		"shipto": "GQ",
-		"conditions": "{cart.weight}<=10.0",
-		"fees": "{colissimo_c20.fees}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_d20": {
-		"about": "Colissimo International Zone D max 20 kg\n  Autres destinations",
-		"label": "Colissimo International Zone D",
-		"shipto": "AF,AI,AN,AQ,AR,AS,AU,AW,BB,BD,BM,BN,BO,BR,BS,BZ,CK,CL,CN,CO,CR,DM,DO,EC,FJ,FK,FM,GD,GS,GT,GY,HK,HN,HT,ID,IN,JM,JP,KG,KH,KI,KN,KP,KR,KZ,LA,LC,LK,MH,MM,MN,MO,MP,MS,MV,MX,MY,NF,NI,NP,NR,NZ,PA,PE,PG,PH,PK,PW,PY,SB,SG,SR,SV,TC,TH,TJ,TL,TM,TO,TT,TV,TW,UY,UZ,VE,VG,VI,VN,VU,WS",
-		"fees": "{table {cart.weight} in 1.0:26.40, 2.0:39.70, 3.0:52.90, 4.0:66.10, 5.0:79.30, 6.0:92.50, 7.0:105.70, 8.0:118.90, 9.0:132.10, 10.0:145.30, 15.0:171.30, 20.0:197.30}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"colissimo_d10": {
-		"about": "Colissimo International Zone D max 10 kg\n  Antigua-et-Barbuda, Cuba, Guam, Îles Caïmans, Pitcairn, Saint-Vincent-et-les Grenadines",
-		"label": "{colissimo_d20.label}",
-		"shipto": "AG,CU,GU,KY,PN,VC",
-		"conditions": "{cart.weight}<=10.0",
-		"fees": "{colissimo_d20.fees}",
-		"tracking_url": "{colissimo.tracking_url}"
-	},
-	"meta0": {
-		"type": "meta",
-		"ignored": "Pays non déservis (introuvables sur le site colissimo.fr) : AX,BT,BV,CC,CX,EH,GG,HM,IM,IO,IQ,JE,NU,PS,SJ,SO,TK,UM\n#   Îles Åland, Bhoutan, Île Bouvet, Îles Cocos - Keeling, Île Christmas, Sahara occidental,\n#   Guernesey, Îles Heard et MacDonald, Île de Man, Territoire britannique de l'océan Indien,\n#   Irak, Jersey, Niue, Territoire palestinien, Svalbard et Île Jan Mayen, Somalie, Tokelau,\n#   Îles Mineures Éloignées des États-Unis"
-	}
-	"meta_chronopost": {
-		"type": "meta",
-		"about": "Chronopost - Tarifs web du 1er septembre 2010",
-		"author": "Owebia"
-	},
-	"chronopost_france": {
-		"label": "Chronopost France Chrono 13",
-		"shipto": "FR",
-		"fees": "{table {cart.weight} in 2.0:18.20, 5.0:18.70, 6.0:19.50, 7.0:20.20, 8.0:20.85, 9.0:21.50, 10.0:22.15, 11.0:22.80, 12.0:23.45, 13.0:24.10, 14.0:24.75, 15.0:25.40, 16.0:26.05, 17.0:26.70, 18.0:27.35, 19.0:28.00, 20.0:28.65, 21.0:29.30, 22.0:29.95, 23.0:30.60, 24.0:31.25, 25.0:31.90, 26.0:32.55, 27.0:33.20, 28.0:33.85, 29.0:34.50, 30:35.15}",
-		"tracking_url": "http://www.fr.chronopost.com/fr/tracking/result?listeNumeros={tracking_number}"
-	},
-	"chronopost_classic_zone_1": {
-		"label": "Chronopost Classic Zone 1",
-		"shipto": "DE,BE,LU,NL",
-		"fees": "{table {cart.weight} in 1.0:29.90, 2.0:32.10, 3.0:34.30, 4.0:36.50, 5.0:38.70, 6.0:40.90, 7.0:43.10, 8.0:45.30, 9.0:47.50, 10.0:49.70}+({cart.weight}>10.0 ? ceil({cart.weight}-10.0)*2.30 : 0.00)",
-		"tracking_url": "{chronopost_france.tracking_url}"
-	},
-	"chronopost_classic_zone_2": {
-		"label": "Chronopost Classic Zone 2",
-		"shipto": "AT,DK,ES,FI,GB,GR,IE,IT,PT,SE",
-		"fees": "{table {cart.weight} in 1.0:33.60, 2.0:36.10, 3.0:38.60, 4.0:41.10, 5.0:43.60, 6.0:46.10, 7.0:48.60, 8.0:51.10, 9.0:53.60, 10.0:56.10}+({cart.weight}>10.0 ? ceil({cart.weight}-10.0)*2.60 : 0.00)",
-		"tracking_url": "{chronopost_france.tracking_url}"
-	},
-	"chronopost_classic_zone_3": {
-		"label": "Chronopost Classic Zone 3",
-		"shipto": "BG,EE,HU,LV,LT,PL,RO,SK,SI,CZ",
-		"fees": "{table {cart.weight} in 1.0:40.30, 2.0:43.10, 3.0:45.90, 4.0:48.70, 5.0:51.50, 6.0:54.30, 7.0:57.10, 8.0:59.90, 9.0:62.70, 10.0:65.50}+({cart.weight}>10.0 ? ceil({cart.weight}-10.0)*2.90 : 0.00)",
-		"tracking_url": "{chronopost_france.tracking_url}"
-	},
-	"chronopost_classic_zone_4": {
-		"label": "Chronopost Classic Zone 4",
-		"shipto": "LI,CH",
-		"fees": "{table {cart.weight} in 1.0:55.30, 2.0:57.90, 3.0:60.50, 4.0:63.10, 5.0:65.70, 6.0:68.30, 7.0:70.90, 8.0:73.50, 9.0:76.10, 10.0:78.70}+({cart.weight}>10.0 ? ceil({cart.weight}-10.0)*2.80 : 0.00)",
-		"tracking_url": "{chronopost_france.tracking_url}"
-	},
-	"meta_export_3j": {
-		"type": "meta",
-		"about": "Export 3J",
-		"author": "Owebia"
-	},
-	"export_3j": {
-		"label": "Export 3J",
-		"shipto": "DE,DK,ES,FI,GB,IE,NL,PT,SE,CH",
-		"fees": "{table {cart.weight} in 0.05:3.75, 0.10:4.00, 0.20:6.50, 0.50:8.50, 1.00:11.00, 1.50:13.00, 2.00:14.80}",
-		"tracking_url": "http://212.157.222.70/webSearch?client=Entreprise&barco={tracking_number}"
-	}
-}
-]]>
-</config>
-				<debug>0</debug>
-				<auto_correction>1</auto_correction>
-				<stop_to_first_match>0</stop_to_first_match>
-				<sort_order>1</sort_order>
-			</owebiashipping1>
-			<owebiashipping2>
-				<active>0</active>
-				<title>Owebia Shipping - Mode de livraison 2</title>
-				<model>Owebia_Shipping2_Model_Carrier_OwebiaShipping2</model>
-				<tracking_view_url></tracking_view_url>
-				<config></config>
-				<debug>0</debug>
-				<auto_correction>1</auto_correction>
-				<stop_to_first_match>0</stop_to_first_match>
-				<sort_order>2</sort_order>
-			</owebiashipping2>
-			<owebiashipping3>
-				<active>0</active>
-				<title>Owebia Shipping - Mode de livraison 3</title>
-				<model>Owebia_Shipping2_Model_Carrier_OwebiaShipping3</model>
-				<tracking_view_url></tracking_view_url>
-				<config></config>
-				<debug>0</debug>
-				<auto_correction>1</auto_correction>
-				<stop_to_first_match>0</stop_to_first_match>
-				<sort_order>3</sort_order>
-			</owebiashipping3>
-		</carriers>
-	</default>
+    <default>
+        <owebia_shipping2>
+            <general>
+                <weight_unit>kg</weight_unit>
+            </general>
+            <bundle_product>
+                <process_children>0</process_children>
+                <load_item_options_on_parent>1</load_item_options_on_parent>
+                <load_item_data_on_parent>1</load_item_data_on_parent>
+                <load_product_data_on_parent>1</load_product_data_on_parent>
+            </bundle_product>
+            <configurable_product>
+                <load_item_options_on_parent>1</load_item_options_on_parent>
+                <load_item_data_on_parent>1</load_item_data_on_parent>
+                <load_product_data_on_parent>0</load_product_data_on_parent>
+            </configurable_product>
+        </owebia_shipping2>
+        <carriers>
+            <owebiashipping1>
+                <active>0</active>
+                <title>Advanced Shipping - Mode de livraison 1</title>
+                <model>Owebia_Shipping2_Model_Carrier_OwebiaShipping1</model>
+                <tracking_view_url></tracking_view_url>
+                <config>{
+   "demo": {
+      "label": "Frais de port fixes",
+      "fees": 10
+   }
+}</config>
+                <debug>0</debug>
+                <auto_escaping>0</auto_escaping>
+                <auto_correction>1</auto_correction>
+                <stop_to_first_match>0</stop_to_first_match>
+                <sort_order>1</sort_order>
+            </owebiashipping1>
+        </carriers>
+    </default>
 </config>
