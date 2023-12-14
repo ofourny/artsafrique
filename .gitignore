@@ -15,3 +15,7 @@
 /var/report/
 /var/session/
 /var/tmp/
+/.idea/artsafrique.iml
+/.idea/php.xml
+/.idea/phpunit.xml
+/.idea/vcs.xml
