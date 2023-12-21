@@ -1,17 +1,15 @@
 <?xml version="1.0"?>
 <!--
 /**
- * @author Amasty Team
- * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
- * @package Amasty_Stripe
- */
--->
+* @author Amasty Team
+* @copyright Copyright (c) 2022 Amasty (https://www.amasty.com)
+* @package App for Payments with Stripe
+*/-->
 <config>
     <modules>
         <Amasty_Stripe>
             <active>true</active>
             <codePool>local</codePool>
-            <edition>community</edition>
         </Amasty_Stripe>
     </modules>
 </config>

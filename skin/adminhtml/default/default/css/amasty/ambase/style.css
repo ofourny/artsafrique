@@ -275,7 +275,7 @@
     margin: 0 10px 15px 0;
     padding: 0 10px 10px;
     width: 164px;
-    min-height: 128px;
+    height: 128px;
     border: 1px solid #cacaca;
     border-radius: 6px;
     text-align: center;
@@ -376,22 +376,6 @@
 
 .ambase-module-container.-update .ambase-title-container {
     border-bottom: none;
-}
-
-.ambase-version-block .line-upper {
-    text-decoration: none;
-    font-size: 12px;
-    line-height: 14px;
-    letter-spacing: 0.25px;
-    font-weight: bold;
-}
-
-.ambase-version-block .line-lower {
-    text-decoration: none;
-    font-size: 12px;
-    line-height: 14px;
-    letter-spacing: 0.25px;
-    font-style: normal;
 }
 
 .ambase-title-container {

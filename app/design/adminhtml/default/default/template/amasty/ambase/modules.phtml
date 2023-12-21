@@ -1,9 +1,9 @@
 <?php
 /**
- * @author Amasty Team
- * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
- * @package Amasty_Base
- */
+* @author Amasty Team
+* @copyright Copyright (c) 2022 Amasty (https://www.amasty.com)
+* @package Magento 1 Base Package
+*/
 ?>
 <?php
 /**
@@ -61,16 +61,6 @@ $modules = $this->getModuleList();
                         <?php if (array_key_exists('disabled', $module)): ?>
                             <p class="ambase-warning"><?= $this->escapeHtml($this->__("Output disabled")) ?></p>
                         <?php endif ?>
-                        <?php if ($this->isMigrationModule($module)): ?>
-                            <br/>
-                            <a class="line-upper" href="<?= $this->escapeUrl($this->generateMigrationUrl($module['description']))?>">
-                                <?= $this->escapeHtml($this->__('Data Migration Service')) ?>
-                            </a>
-                            <br/>
-                            <a class="line-lower" href="<?= $this->escapeUrl($this->generateMigrationUrl($module['description']))?>">
-                                <?= $this->escapeHtml($this->__('is available')) ?>
-                            </a>
-                        <?php endif ?>
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -94,27 +84,12 @@ $modules = $this->getModuleList();
                         <span class="ambase-svg"></span>
                         <span class="ambase-version"><?= $this->escapeHtml($this->__($module['version'])) ?></span>
                     </span>
-                        <?php if ($this->isMigrationModule($module)): ?>
-                            <span class="line-upper" onclick="window.open(
-                                    '<?= $this->escapeUrl($this->generateMigrationUrl($module['description']))?>',
-                                    '_blank'
-                                    );">
-                           <?= $this->escapeHtml($this->__('Data Migration Service')) ?>
-                        </span>
-                            <br/>
-                            <span class="line-lower" onclick="window.open(
-                                    '<?= $this->escapeUrl($this->generateMigrationUrl($module['description']))?>',
-                                    '_blank'
-                                    );">
-                            <?= $this->escapeHtml($this->__('is available')) ?>
-                        </span>
-                        <?php endif ?>
-                        <?php if (array_key_exists('date', $module)): ?>
-                            <span class="ambase-date"><?= $this->escapeHtml($this->__($module['date'])) ?></span>
-                        <?php endif; ?>
-                        <?php if (array_key_exists('disabled', $module)): ?>
-                            <span class="ambase-warning"><?= $this->escapeHtml($this->__("Output disabled")) ?></span>
-                        <?php endif ?>
+                    <?php if (array_key_exists('date', $module)): ?>
+                        <span class="ambase-date"><?= $this->escapeHtml($this->__($module['date'])) ?></span>
+                    <?php endif; ?>
+                    <?php if (array_key_exists('disabled', $module)): ?>
+                        <span class="ambase-warning"><?= $this->escapeHtml($this->__("Output disabled")) ?></span>
+                    <?php endif ?>
                 </span>
                 </a>
             <?php else: ?>

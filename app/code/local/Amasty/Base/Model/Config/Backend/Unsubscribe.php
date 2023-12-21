@@ -1,10 +1,9 @@
 <?php
 /**
- * @author Amasty Team
- * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
- * @package Amasty_Base
- */
-
+* @author Amasty Team
+* @copyright Copyright (c) 2022 Amasty (https://www.amasty.com)
+* @package Magento 1 Base Package
+*/
 
 class Amasty_Base_Model_Config_Backend_Unsubscribe extends Mage_Core_Model_Config_Data
 {

@@ -1,10 +1,9 @@
 <?php
 /**
- * @author Amasty Team
- * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
- * @package Amasty_Base
- */
-
+* @author Amasty Team
+* @copyright Copyright (c) 2022 Amasty (https://www.amasty.com)
+* @package Magento 1 Base Package
+*/
 
 class Amasty_Base_Block_Extensions extends Mage_Adminhtml_Block_System_Config_Form_Fieldset
 {
@@ -12,10 +11,6 @@ class Amasty_Base_Block_Extensions extends Mage_Adminhtml_Block_System_Config_Fo
 
     protected $_template = 'amasty/ambase/modules.phtml';
     protected $moduleList;
-    protected $dataMigrationList = array(
-        'Amasty_Rma', 'Amasty_Label', 'Amasty_GiftCard', 'Magpleasure_Blog', 'Amasty_Customerattr'
-    );
-    protected $dataMigrationNames = array();
 
     public function render(Varien_Data_Form_Element_Abstract $element)
     {
@@ -40,13 +35,6 @@ class Amasty_Base_Block_Extensions extends Mage_Adminhtml_Block_System_Config_Fo
 
         foreach ($modules as $moduleName => $moduleInfo) {
             $moduleFullName = explode('_', $moduleName);
-
-            if (in_array($moduleName, $this->dataMigrationList)) {
-                $tmpInfo = $this->getModuleInfo($moduleName);
-                if (isset($tmpInfo['description'])) {
-                    $this->dataMigrationNames[$moduleName] = $tmpInfo['description'];
-                }
-            }
 
             if (!in_array($moduleFullName[0], array('Amasty', 'Belitsoft', 'Mageplace', 'Magpleasure'))) {
                 continue;
@@ -80,17 +68,6 @@ class Amasty_Base_Block_Extensions extends Mage_Adminhtml_Block_System_Config_Fo
         $this->moduleList = $array;
 
         return $this->moduleList;
-    }
-
-    public function generateMigrationUrl($moduleName) {
-        return "https://products.amasty.com/data-migration?utm_source="
-            . strtolower(array_search($moduleName, $this->dataMigrationNames))
-            . "&utm_medium=backend&utm_campaign=datamigration";
-    }
-
-    public function isMigrationModule($module)
-    {
-        return isset($module['description']) && in_array($module['description'], $this->dataMigrationNames);
     }
 
     protected function getModuleInfo($moduleCode)
